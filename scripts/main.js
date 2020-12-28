@@ -12,30 +12,22 @@ requirejs(['store', 'jquery'], () => {
 });
 
 
-function renderQuestionContent(index) {
-    let questionNumber = index + 1;
+function renderQuestionContent(question_index) {
+    let questionNumber = question_index + 1;
     $('#score span:first-child').text(STORE.score);
     $('#score span:nth-child(2)').text(STORE.questions.length);
 
     $('#question_number span').text(questionNumber);
-    $('main h3').html(STORE.questions[index].question);
+    $('main h3').html(STORE.questions[question_index].question);
 
-    $('#first_answer').text(STORE.questions[index].answers[0]);
-    $('#first_answer').val(STORE.questions[index].answers[0]);
-    $('label[for=first_answer]').text(STORE.questions[index].answers[0]);
-    $('#second_answer').text(STORE.questions[index].answers[1]);
-    $('#second_answer').val(STORE.questions[index].answers[1]);
-    $('label[for=second_answer]').text(STORE.questions[index].answers[1]);
-    $('#third_answer').text(STORE.questions[index].answers[2]);
-    $('#third_answer').val(STORE.questions[index].answers[2]);
-    $('label[for=third_answer]').text(STORE.questions[index].answers[2]);
-    $('#fourth_answer').text(STORE.questions[index].answers[3]);
-    $('#fourth_answer').val(STORE.questions[index].answers[3]);
-    $('label[for=fourth_answer]').text(STORE.questions[index].answers[3]);
+    $('input[type=radio]').each(function(answers_index) {
+        $(this).val(STORE.questions[question_index].answers[answers_index]);
+        $(this).siblings().text(STORE.questions[question_index].answers[answers_index]);
+    });
 }
 function generateQuestionTemplate() {
     return `
-    <p id="score">Score: <span>0</span> out of <span></span></p>
+    <p id="score">Score: <span></span> out of <span></span></p>
     <h2 id="question_number">Question <span></span></h2>
     <h3></h3>
     <form>
