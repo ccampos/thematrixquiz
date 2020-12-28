@@ -1,0 +1,24 @@
+main form {
+    display: table;
+}
+
+main form > div {
+    display: table-row;
+}
+
+form div div {
+    display: table-cell;
+}
+
+form div div:first-child {
+    padding-right: 50px;
+}
+
+input[type="submit"] {
+    margin: 10px 20px;
+}
+
+/* Answers Animation */
+form div div:nth-child(2) {
+    display: none;
+}
